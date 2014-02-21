@@ -2,7 +2,7 @@ Script started on Fri 21 Feb 2014 12:58:33 AM EST
 kbpatel13@matrix:~/oop344_new/workshop3> whoami
 kbpatel13
 kbpatel13@matrix:~/oop344_new/workshop3> cat Array.h w3.cpp
-/*   Kashyap Babubhai Patel									*/
+/*   Kashyap Babubhai Patel								*/
 /*   Computer Programmer (CPD)								*//*	 Semester - 4											*//*	 Seneca College of Applied Arts and Technology			*/
 /*   School of Information & Communication Technology		*//*	 E-mail: kbpatel13@myseneca.ca							*/
 

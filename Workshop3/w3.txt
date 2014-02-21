@@ -1,0 +1,113 @@
+Script started on Fri 21 Feb 2014 12:58:33 AM EST
+kbpatel13@matrix:~/oop344_new/workshop3> whoami
+kbpatel13
+kbpatel13@matrix:~/oop344_new/workshop3> cat Array.h w3.cpp
+/*   Kashyap Babubhai Patel									*/
+/*   Computer Programmer (CPD)								*//*	 Semester - 4											*//*	 Seneca College of Applied Arts and Technology			*/
+/*   School of Information & Communication Technology		*//*	 E-mail: kbpatel13@myseneca.ca							*/
+
+//Workshop 3
+//C++ Templates
+//Array.h
+
+template<class E = double>
+class Array {										//class Array
+		E* _storage;
+		int _size;
+		E _dummy;
+	public:
+		Array(int);									//One parameter Constructor
+		Array<E>& operator=(const Array<E>&);		//= opeartor
+		Array(const Array<E>&);						//copy constructor
+		unsigned int size() const;					//returning size
+		E& operator[](int i);						//an inline subscript operator that returns a reference to element i
+		~Array();									//destructor
+};
+
+template<class T>									
+Array<T>::Array(int s) {
+	_size = s;										//Assigning variables
+	_storage = new T[s];
+}
+
+template<class T>
+Array<T>::Array(const Array<T>& src) {
+	_storage = NULL;
+	_size = 0;
+	*this = src;									//calls assignment operator
+}
+
+template<class T>
+unsigned int Array<T>::size() const {				//an inline query that returns the number of elements in the array.
+	return _size;
+}
+
+template<class T>
+T& Array<T>::operator[](int i) {					//returning value at specified array index
+	if(i < 0 || i >= _size) {
+		return _dummy;
+	}
+	return _storage[i];
+}
+
+template<class T>
+Array<T>::~Array() {								//deleting array pointer from memory
+	if(_storage) {
+		delete[] _storage;
+		_storage = NULL;
+	}
+	_size = 0;
+}
+
+template<class T>
+Array<T>& Array<T>::operator=(const Array<T>& src) {	
+	if(this != &src) {
+		if(_storage) delete[] _storage;
+		_storage = new T[src._size];
+		_size = src._size;
+		for(int i = 0; i < _size; i++) {			//copying array values by for loop
+			_storage[i] = src._storage[i];
+		}
+	}
+	return *this;
+}
+/*   Kashyap Babubhai Patel									*/
+/*   Computer Programmer (CPD)								*//*	 Semester - 4											*//*	 Seneca College of Applied Arts and Technology			*/
+/*   School of Information & Communication Technology		*//*	 E-mail: kbpatel13@myseneca.ca							*/
+
+//Workshop 3
+//C++ Templates
+//w3.cpp
+
+#include <iostream>
+ using namespace std;
+ #include "Array.h"
+
+ int main ( ) {
+    Array<int> x(3);
+    for (int i = 0; i < 3; i++)
+        x[i] = 9 - i;
+    x[-1] = 99;
+    for (int i = 0; i < 6; i++)
+        cout << x[i] << endl;
+
+    Array<> y(2);
+    y[0] = 2.1;
+    y[1] = 1.1;
+    for (int i = 0; i < 2; i++)
+        cout << y[i] << endl;
+    return 0;
+ }kbpatel13@matrix:~/oop344_new/workshop3> g++ -o w3 w3.cpp
+kbpatel13@matrix:~/oop344_new/workshop3> w3
+9
+8
+7
+99
+99
+99
+2.1
+1.1
+kbpatel13@matrix:~/oop344_new/workshop3> exit
+exit
+
+Script done on Fri 21 Feb 2014 01:00:08 AM EST

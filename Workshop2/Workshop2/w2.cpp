@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <ctime>
-#define N 10000000
+#define N 1000000000
 
 void swap(void *a, void *b, int size) {
 	char *temp = (char*) malloc (sizeof(char)* size);	//defining character of incoming size
@@ -39,38 +39,38 @@ int main()	{
 
 	c0 = clock();	//start timer
 	std::cout << "Processing integer values, please wait..." << std::endl;	
-	swap(&a, &b, 4);
+	swap(&a, &b, sizeof(int));
 	c1 = clock();	//start second timer
 	std::cout << "Process time for ints               is : " << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
 	
 	c0 = clock();	//start timer
 	std::cout << "Processing double values, Please wait..." << std::endl;	
-	swap(&x, &y, 8);
+	swap(&x, &y, sizeof(double));
 	c1 = clock();	//start second timer 
 	std::cout << "Process time for double             is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
 
 	c0 = clock();	//start timer
 	std::cout << "Processing short values, Please wait..." << std::endl;	
-	swap(&c, &d, 2);
+	swap(&c, &d, sizeof(short));
 	c1 = clock();	//start second timer
 	std::cout << "Process time for short              is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
 
 	c0 = clock();	//start timer
 	std::cout << "Processing unsigned long long values, Please wait..." << std::endl;	
-	swap(&v, &w, 8);
+	swap(&v, &w, sizeof(unsigned long long));
 	c1 = clock();	//start second timer
 	std::cout << "Process time for unsigned long long is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
 
 	test t; t.a = 2; t.b = 4; t.x = 2.2; t.y = 2.4;
 	c0 = clock();	//start timer
 	std::cout << "Processing Struct with Int values, Please wait..." << std::endl;	
-	swap(&t.a, &t.b, 8);
+	swap(&t.a, &t.b, sizeof(t.a));
 	c1 = clock();	//start second timer
 	std::cout << "Process time for Struct with Int is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
 
 	c0 = clock();	//start timer
 	std::cout << "Processing Struct with Double values, Please wait..." << std::endl;	
-	swap(&t.x, &t.y, 8);
+	swap(&t.x, &t.y, sizeof(t.x));
 	c1 = clock();	//start second timer
 	std::cout << "Process time for Struct with Double is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
 

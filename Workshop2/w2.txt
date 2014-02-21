@@ -1,0 +1,114 @@
+Script started on Thu 13 Feb 2014 06:15:14 PM EST
+kbpatel13@matrix:~/oop344_new/workshop2> whoami
+kbpatel13
+kbpatel13@matrix:~/oop344_new/workshop2> cat w2.txt[K[K[Kcpp
+/* Kashyap Babubhai Patel
+   Computer Programmer (CPD)
+   Semester - 4 
+   Seneca College of Applied Arts and Technology
+   School of Information & Communication Technology 
+   E-mail: kbpatel13@myseneca.ca */
+
+//Workshop 2
+//C++ Generic Pointers
+
+#include <iostream>
+using namespace std;
+#include <ctime>
+#include<cstring>
+#include<malloc.h>
+#define N 1000000000
+
+void swap(void *a, void *b, int size) {
+	char *temp = (char*) malloc (sizeof(char)* size);	//defining character of incoming size
+	for (int i = 0; i <= N; i++) {
+		memcpy(temp, a, size);		//memcpy copy bytes in memory
+		memcpy(a, b, size);
+		memcpy(b, temp, size);
+	}
+	free(temp);						//free memory occupied by temp buffer
+}
+
+// Struct to test with int and doubles
+struct test {
+		int a, b;
+		double x, y;
+};
+
+int main()	{
+	std::cout << "File w2_cpp.cpp" << std::endl;	// Declaration of variable
+	clock_t c0 = 0, c1 = 0;					
+	int a = 2, b = 4;
+	double x = 2.2, y = 4.4;
+	short c = 3, d = 4;
+	unsigned long long v = 3.456, w = 2.345;
+	
+
+	c0 = clock();	//start timer
+	std::cout << "Processing integer values, please wait..." << std::endl;	
+	swap(&a, &b, sizeof(int));
+	c1 = clock();	//start second timer
+	std::cout << "Process time for ints               is : " << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
+	
+	c0 = clock();	//start timer
+	std::cout << "Processing double values, Please wait..." << std::endl;	
+	swap(&x, &y, sizeof(double));
+	c1 = clock();	//start second timer 
+	std::cout << "Process time for double             is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
+
+	c0 = clock();	//start timer
+	std::cout << "Processing short values, Please wait..." << std::endl;	
+	swap(&c, &d, sizeof(short));
+	c1 = clock();	//start second timer
+	std::cout << "Process time for short              is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
+
+	c0 = clock();	//start timer
+	std::cout << "Processing unsigned long long values, Please wait..." << std::endl;	
+	swap(&v, &w, sizeof(unsigned long long));
+	c1 = clock();	//start second timer
+	std::cout << "Process time for unsigned long long is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
+
+	test t; t.a = 2; t.b = 4; t.x = 2.2; t.y = 2.4;
+	c0 = clock();	//start timer
+	std::cout << "Processing Struct with Int values, Please wait..." << std::endl;	
+	swap(&t.a, &t.b, sizeof(t.a));
+	c1 = clock();	//start second timer
+	std::cout << "Process time for Struct with Int is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
+
+	c0 = clock();	//start timer
+	std::cout << "Processing Struct with Double values, Please wait..." << std::endl;	
+	swap(&t.x, &t.y, sizeof(t.x));
+	c1 = clock();	//start second timer
+	std::cout << "Process time for Struct with Double is :" << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl << std::endl;
+
+
+	std::cout << "Completed Now..." << std::endl;	
+	//system("pause"); //prevent sudden execution end of program in windows environment
+	return 0;
+}		//End of main
+kbpatel13@matrix:~/oop344_new/workshop2> g++ -o w2 w2.cpp
+kbpatel13@matrix:~/oop344_new/workshop2> w2
+File w2_cpp.cpp
+Processing integer values, please wait...
+Process time for ints               is : 35.35 secs
+
+Processing double values, Please wait...
+Process time for double             is :40.78 secs
+
+Processing short values, Please wait...
+Process time for short              is :33.92 secs
+
+Processing unsigned long long values, Please wait...
+Process time for unsigned long long is :40.41 secs
+
+Processing Struct with Int values, Please wait...
+Process time for Struct with Int is :35.37 secs
+
+Processing Struct with Double values, Please wait...
+Process time for Struct with Double is :40.44 secs
+
+Completed Now...
+kbpatel13@matrix:~/oop344_new/workshop2> exit
+exit
+
+Script done on Thu 13 Feb 2014 06:19:33 PM EST

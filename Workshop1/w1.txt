@@ -1,0 +1,113 @@
+Script started on Wed 29 Jan 2014 05:24:16 PM EST
+kbpatel13@matrix:~/oop344_new/workshop1> whoami
+kbpatel13
+kbpatel13@matrix:~/oop344_new/workshop1> cat w1_cpp.cpp
+/* Kashyap Babubhai Patel
+   Computer Programmer (CPD)
+   Semester - 4 
+   Seneca College of Applied Arts and Technology
+   School of Information & Communication Technology 
+   E-mail: kbpatel13@myseneca.ca */
+
+//Workshop 1
+//C++ Function Version
+
+#include <iostream>
+#include <ctime>
+using namespace std;
+#define N 1000000000
+
+//Integer Swap Function
+void swap_i() {
+	int x = 2;
+	int z, y = 4;
+	for (int i = 0; i <= N; i++){
+		z = x;
+		x = y;
+		y = x;
+	}
+}
+
+//Double Swap Function
+void swap_d() {
+	double x = 2.5, z, y = 4.5;
+	for (int i = 0; i <= N; i++){
+		z = x;
+		x = y;
+		y = x;
+	}
+}
+
+int main()	{
+	std::cout << "File w1_cpp.cpp" << std::endl;	// Declaration
+	clock_t c0, c1, c2, c3;					
+
+	c0 = clock();	//start timer
+	swap_i();
+	c1 = clock();	//strt second timer
+													//Processing Of both functions					
+	c2 = clock();	//start timer
+	swap_d();
+	c3 = clock();	//start second timer
+	
+		//output printing. It uses difference between both timers to identify total seconds 
+	std::cout << "Process time for ints     is " << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl;
+	std::cout << "Process time for double   is " << (double)(c3-c2)/CLOCKS_PER_SEC << " secs" << std::endl;
+
+	return 0;
+}
+kbpatel13@matrix:~/oop344_new/workshop1> g++ -o w1_cpp w1_cpp.cpp
+kbpatel13@matrix:~/oop344_new/workshop1> w1_cpp
+File w1_cpp.cpp
+Process time for ints     is 3.83 secs
+Process time for double   is 5.98 secs
+kbpatel13@matrix:~/oop344_new/workshop1> cat w1_macro.cpp
+/* Kashyap Babubhai Patel
+   Computer Programmer (CPD)
+   Semester - 4 
+   Seneca College of Applied Arts and Technology
+   School of Information & Communication Technology 
+   E-mail: kbpatel13@myseneca.ca */
+
+//Workshop 1
+//C++ Macro Version
+
+#include <iostream>
+#include <ctime>
+using namespace std;
+#define N 1000000000
+
+//Function-like Macros for ints and doubles
+#define swap_i(x, y) int z; for(int i = 0; i < N; i++) { z = x; x = y; y = z; } 
+#define swap_d(x, y) double t; for(int i = 0; i < N; i++) { t = x; x = y; y = t; } 
+
+
+int main()	{
+	std::cout << "File w1_macro.cpp" << std::endl;		//Declaration
+	clock_t c0, c1, c2, c3;	
+	int a = 2, b = 4;
+	double c = 2.5, d = 4.5; 
+
+	c0 = clock();		//start timer
+	swap_i(a, b);
+	c1 = clock();		//start another timer
+	
+	c2 = clock();
+	swap_d(c, d);
+	c3 = clock();
+	
+	//output printing. It uses difference between both timers to identify total seconds 
+	std::cout << "Process time for ints     is " << (double)(c1-c0)/CLOCKS_PER_SEC << " secs" << std::endl;
+	std::cout << "Process time for double   is " << (double)(c3-c2)/CLOCKS_PER_SEC << " secs" << std::endl;
+
+	return 0;
+}
+kbpatel13@matrix:~/oop344_new/workshop1> g++ -o w1 [K_macro w1_macro.cpp
+kbpatel13@matrix:~/oop344_new/workshop1> w1_macro.cpp[K[K[K[K
+File w1_macro.cpp
+Process time for ints     is 4.68 secs
+Process time for double   is 4.45 secs
+kbpatel13@matrix:~/oop344_new/workshop1> exit
+exit
+
+Script done on Wed 29 Jan 2014 05:26:08 PM EST

@@ -1,0 +1,51 @@
+Script started on Thu 10 Apr 2014 06:55:25 PM EDT
+kbpatel13@matrix:~/oop344_new/Workshop9> whoami
+kbpatel13
+kbpatel13@matrix:~/oop344_new/Workshop9> cat w9.cpp
+/* Kashyap Babubhai Patel								*/
+/* Computer Programmer (CPD)							*/
+/* Semester - 4											*/
+/* Seneca College of Applied Arts and Technology		*/
+/* School of Information & Communication Technology		*/
+/* E-mail: kbpatel13@myseneca.ca						*/
+
+//OOP344C
+//Workshop 9
+
+/* Bit Representation of an unsigned int  */
+ #include <iostream>
+ using namespace std;
+ #include <limits.h>
+ #include <bitset>
+
+ //display function which display bits of unsigned int 
+void displayBits(unsigned x) {
+	 int t = 0;
+	 std::bitset<CHAR_BIT * 4> temp (x);
+	 int a = (CHAR_BIT * 4) - 1;
+	 while(a >= 0) {
+		cout << temp[a];
+		t++; a--;
+		if(t == 8) { cout << " "; t = 0; }
+	 }
+	 cout << std::endl;
+}
+int main(void) {
+
+     displayBits(0);
+     displayBits(1);
+     displayBits(-1);
+     displayBits(2000000000);
+     displayBits(-2000000000);
+     return 0;
+}kbpatel13@matrix:~/oop344_new/Workshop9> g++ -o w9 w9.cpp
+kbpatel13@matrix:~/oop344_new/Workshop9> w9
+00000000 00000000 00000000 00000000 
+00000000 00000000 00000000 00000001 
+11111111 11111111 11111111 11111111 
+01110111 00110101 10010100 00000000 
+10001000 11001010 01101100 00000000 
+kbpatel13@matrix:~/oop344_new/Workshop9> exit
+exit
+
+Script done on Thu 10 Apr 2014 06:55:56 PM EDT

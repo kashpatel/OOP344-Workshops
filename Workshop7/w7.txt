@@ -1,0 +1,144 @@
+Script started on Thu 27 Mar 2014 07:33:05 PM EDT
+wkbpatel13@matrix:~/oop344_new/workshop7> whoami
+kbpatel13
+kbpatel13@matrix:~/oop344_new/workshop7> cat w7.cpp List.h List.cpp
+// Thing To Do List
+ // Workshop 6
+ // TTDList.cpp
+ // Oct 31 2006
+
+ #include "List.h"
+#include <iostream>
+using namespace std;
+ int main() {
+     List list(10, 20);
+
+     list.add("Monday",  "Go to work");
+     list.add("Tuesday", "Pay Credit Card");
+     list.add("Friday", "Buy Motorcycle");
+     list.add("Wednesday",  "Write Mid-term Test");
+     list.display();
+
+     list.remove();
+     list.remove();
+     list.display();
+     return 0;
+ }
+/* Kashyap Babubhai Patel								*/
+/* Computer Programmer (CPD)							*/
+/* Semester - 4											*/
+/* Seneca College of Applied Arts and Technology		*/
+/* School of Information & Communication Technology		*/
+/* E-mail: kbpatel13@myseneca.ca						*/
+
+//List.h
+
+//ToDo class
+class ToDo {
+	char desc[30];
+	char date[10];
+public:
+	ToDo();
+	ToDo(const char*, const char*);
+	void display (int a, int t) const;
+};
+
+//Node class
+struct Node : public ToDo {
+	Node* next;
+public:
+	Node();
+	Node(const char*, const char*, Node* tmp);
+};
+
+//List class
+class List : public Node {
+	Node* head;
+	int width_date, width_desc;
+public: 
+	List();
+	List(int w, int h);
+	void add(const char*, const char*);	//inserts a node at the head of the list. 
+	void remove();						//removes the node at the head of the list. 
+	void display() const;				//displays all of the things to do in the list on standard output in reverse order. 
+};/* Kashyap Babubhai Patel								*/
+/* Computer Programmer (CPD)							*/
+/* Semester - 4											*/
+/* Seneca College of Applied Arts and Technology		*/
+/* School of Information & Communication Technology		*/
+/* E-mail: kbpatel13@myseneca.ca						*/
+
+//List.cpp
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
+#include <cstring>
+using namespace  std;
+#include "List.h"
+
+//ToDo class
+ToDo::ToDo(){}
+ToDo::ToDo(const char* dat, const char* des) {
+		strcpy(date, dat);
+		strcpy(desc, des);	
+}
+void ToDo::display (int a, int t) const { 
+	 std::cout << date;
+	 for (int i = strlen(date); i < a; i++) {
+         	std::cout << ' ';
+         }
+	 std::cout << desc;
+	 for(int i = strlen(desc); i < t; i++) {
+                std::cout << ' ';
+         }	
+   	 cout << endl;
+}
+
+//Node class
+Node::Node() : next(NULL) {}
+Node::Node(const char* dat, const char* desc, Node* tmp) : ToDo(dat, desc){
+		next = tmp;
+}
+
+//List class
+List::List() : head(NULL) {}
+List::List(int w, int w1) {
+	head = NULL;
+	width_date = w; 
+	width_desc = w1;
+}
+void List::add(const char* s1, const char* s2) {
+	Node* temp = new Node(s1, s2, NULL);
+	temp -> next = head;
+	head = temp;
+}
+void List::remove() {
+	if(head) {
+		Node *h = head;
+		head = head -> next;
+		delete h;
+	}
+}						
+void List::display() const {
+	Node* ptr = head;
+	while (ptr != NULL) {
+		ptr -> display(width_date, width_desc);
+		ptr = ptr->next;
+	}
+	std::cout << endl;
+}
+kbpatel13@matrix:~/oop344_new/workshop7> g++ -o w7 w7.cpp List.cpp
+kbpatel13@matrix:~/oop344_new/workshop7> w7
+Wednesday Write Mid-term Test 
+Friday    Buy Motorcycle      
+Tuesday   Pay Credit Card     
+Monday    Go to work          
+
+Tuesday   Pay Credit Card     
+Monday    Go to work          
+
+kbpatel13@matrix:~/oop344_new/workshop7> exit
+exit
+
+Script done on Thu 27 Mar 2014 07:33:54 PM EDT
